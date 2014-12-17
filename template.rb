@@ -1,15 +1,10 @@
 # Gems
 # ==================================================
 
-# Segment.io as an analytics solution (https://github.com/segmentio/analytics-ruby)
-gem "analytics-ruby"
 # For encrypted password
 gem "bcrypt-ruby"
 # Useful SASS mixins (http://bourbon.io/)
 gem "bourbon"
-
-# For authorization (https://github.com/ryanb/cancan)
-gem "cancan"
 
 case ask("Choose Template Engine:", :limited_to => %w[erb haml slim])
 when "haml"
@@ -67,13 +62,6 @@ run "echo 'STDOUT.sync = true' >> config/environments/development.rb"
 run "bundle exec guard init rspec"
 
 
-
-# Initialize CanCan
-# ==================================================
-run "rails g cancan:ability"
-
-
-
 # Clean up Assets
 # ==================================================
 # Use SASS extension for application.css
@@ -90,13 +78,13 @@ run "echo '@import \"bourbon\";' >>  app/assets/stylesheets/application.css.scss
 
 
 # Bootstrap: install from https://github.com/twbs/bootstrap
-# Note: This is 3.0.0
+# Note: This is 3.3.1
 # ==================================================
 if yes?("Download bootstrap?")
-  run "wget https://github.com/twbs/bootstrap/archive/v3.0.0.zip -O bootstrap.zip -O bootstrap.zip"
+  run "wget https://github.com/twbs/bootstrap/archive/v3.3.1.zip -O bootstrap.zip -O bootstrap.zip"
   run "unzip bootstrap.zip -d bootstrap && rm bootstrap.zip"
-  run "cp bootstrap/bootstrap-3.0.0/dist/css/bootstrap.css vendor/assets/stylesheets/"
-  run "cp bootstrap/bootstrap-3.0.0/dist/js/bootstrap.js vendor/assets/javascripts/"
+  run "cp bootstrap/bootstrap-3.3.1/dist/css/bootstrap.css vendor/assets/stylesheets/"
+  run "cp bootstrap/bootstrap-3.3.1/dist/js/bootstrap.js vendor/assets/javascripts/"
   run "rm -rf bootstrap"
   run "echo '@import \"bootstrap\";' >>  app/assets/stylesheets/application.css.scss"
   run "rails g simple_form:install --bootstrap"
